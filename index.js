@@ -4,9 +4,6 @@ import fs from 'node:fs'
 import fsp from 'node:fs/promises'
 import crypto from 'node:crypto';
 
-import 'dotenv/config'
-import fetch from "node-fetch";
-
 const project_id = 515350
 const languages = ['nl', 'fr']
 

@@ -11,8 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.19.0",
-    "checksum": "^1.0.0",
-    "dotenv": "^16.0.1",
     "fast-xml-parser": "^4.0.9",
     "node-fetch": "^3.2.10"
   }
