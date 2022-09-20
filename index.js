@@ -33,7 +33,10 @@ const available = await Promise.all(languages.map(async (language) => {
   const translations = {}
 
   for (const unit of body['trans-unit']) {
-    translations[unit['@_resname']] = unit.target['#text']
+    const key = unit['@_resname'].split('.')[1]
+    const translation = unit.target['#text']
+
+    translations[key] = translation
   }
 
   const json = JSON.stringify(translations, null, '\t')
