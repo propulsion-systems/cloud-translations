@@ -1,17 +1,15 @@
 {
-  "name": "crowdin-api",
+  "name": "cloud-translations",
   "version": "1.0.0",
-  "description": "",
+  "description": "Fetches latest duracloud translations",
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "node index.js"
   },
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.19.0",
-    "fast-xml-parser": "^4.0.9",
-    "node-fetch": "^3.2.10"
+    "fast-xml-parser": "^4.0.9"
   }
 }
