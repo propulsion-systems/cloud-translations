@@ -12,7 +12,7 @@ const parser = new XMLParser({
   ignoreAttributes: false
 })
 
-await fsp.mkdir('dist/languages', {
+await fsp.mkdir('dist/translations', {
   recursive: true
 })
 
@@ -38,9 +38,9 @@ await Promise.all(languages.map(async (language) => {
     translations[key] = translation
   }
 
-  const json = JSON.stringify(translations, null, '\t')
+  const json = JSON.stringify(translations)
 
-  await fsp.writeFile(`dist/languages/${language}.json`, json)
+  await fsp.writeFile(`dist/translations/${language}.json`, json)
 }))
 
 await fsp.writeFile(`dist/available.json`, JSON.stringify({
