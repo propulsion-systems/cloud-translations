@@ -1,7 +1,6 @@
 import crowdin from '@crowdin/crowdin-api-client'
 import { XMLParser } from 'fast-xml-parser'
 import fsp from 'node:fs/promises'
-import crypto from 'node:crypto'
 
 const project = process.env.CROWDIN_PROJECT
 
@@ -19,7 +18,7 @@ await fsp.mkdir('dist/languages', {
 
 const { data: { targetLanguageIds: languages } } = await projectsGroupsApi.getProject(project)
 
-const available = await Promise.all(languages.map(async (language) => {
+await Promise.all(languages.map(async (language) => {
   const { data: { url } } = await translationsApi.exportProjectTranslation(project, {
     targetLanguageId: language,
     format: 'xliff'
@@ -40,11 +39,11 @@ const available = await Promise.all(languages.map(async (language) => {
   }
 
   const json = JSON.stringify(translations, null, '\t')
-  const hash = crypto.createHash('md5').update(json).digest("hex")
 
   await fsp.writeFile(`dist/languages/${language}.json`, json)
-
-  return { [language]: hash }
 }))
 
-await fsp.writeFile(`dist/available.json`, JSON.stringify(available))
+await fsp.writeFile(`dist/available.json`, JSON.stringify({
+  'version': Date.now(),
+  'languages': languages
+}))
