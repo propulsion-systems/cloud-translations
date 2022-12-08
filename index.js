@@ -32,7 +32,7 @@ await Promise.all(languages.map(async (language) => {
   const translations = {}
 
   for (const unit of body['trans-unit']) {
-    const key = unit['@_resname'].split('.')[1]
+    const key = unit['@_resname']
     const translation = unit.target['#text']
 
     translations[key] = translation
